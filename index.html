@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Júri Simulado — VidaFit × Ana Martins</title>
+<meta name="description" content="Dossiê do júri simulado: caso VidaFit Ltda. e Ana Martins.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<style>
+:root{
+  --walnut:#1f140d; --walnut-2:#2b1c12; --walnut-3:#3a271a;
+  --paper:#efe6d4; --paper-2:#e4d8c1; --paper-3:#d6c8ad;
+  --ink:#1b130d; --ink-2:#5a4b3d;
+  --brass:#b8924f; --brass-d:#7d5f2c;
+  --oxblood:#7a2a20; --slate:#2f4a63;
+  --on-dark:#cdbfa9;
+  --display:'Bodoni Moda',Georgia,serif; --sans:'IBM Plex Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --ease:cubic-bezier(.19,1,.22,1); --pad:clamp(1.25rem,4.5vw,4rem);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{background:var(--walnut);color:var(--paper);font-family:var(--sans);font-size:1rem;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--brass);outline-offset:4px}
+.mono{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase}
+.display{font-family:var(--display);font-weight:500;letter-spacing:-.02em;line-height:1.02}
+.paper{background:var(--paper);color:var(--ink)}
+.paper .dim{color:var(--ink-2)}
+.dim{color:var(--on-dark)}
+section{padding:clamp(6rem,12vw,10rem) var(--pad);position:relative}
+.rv{opacity:0;transform:translateY(34px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.mask{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
+.mask>span{display:block;transform:translateY(110%);transition:transform 1.3s var(--ease)}
+.mask.in>span{transform:none}
+.mask:nth-child(2)>span{transition-delay:.1s}.mask:nth-child(3)>span{transition-delay:.2s}
+header.bar{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad);
+  transition:background .5s,border-color .5s,transform .6s var(--ease);border-bottom:1px solid transparent}
+header.bar.solid{background:rgba(31,20,13,.88);backdrop-filter:blur(14px);border-color:rgba(205,191,169,.14)}
+header.bar.hide{transform:translateY(-100%)}
+.brand{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:var(--paper)}
+.brand svg{width:22px;height:22px}
+.brand b{font-family:var(--display);font-weight:500;font-size:1.15rem;letter-spacing:.01em}
+header nav ul{display:flex;gap:2rem;list-style:none}
+header nav a{color:var(--on-dark);text-decoration:none;font-size:.82rem;letter-spacing:.04em;position:relative;padding:.4rem 0;transition:color .3s}
+header nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--brass);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+header nav a:hover,header nav a.on{color:var(--paper)}
+header nav a:hover::after,header nav a.on::after{transform:scaleX(1)}
+.burger{display:none;background:none;border:1px solid rgba(205,191,169,.3);width:44px;height:44px;border-radius:50%;cursor:pointer;position:relative;z-index:110}
+.burger i{position:absolute;left:13px;right:13px;height:1px;background:var(--paper);transition:transform .5s var(--ease),top .5s var(--ease)}
+.burger i:first-child{top:18px}.burger i:last-child{top:25px}
+.menu-open .burger i:first-child{top:21px;transform:rotate(45deg)}
+.menu-open .burger i:last-child{top:21px;transform:rotate(-45deg)}
+#drawer{position:fixed;inset:0;z-index:90;background:var(--walnut);display:flex;flex-direction:column;justify-content:center;padding:0 var(--pad);
+  clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .9s var(--ease),visibility .9s}
+.menu-open #drawer{clip-path:inset(0);visibility:visible}
+.menu-open header.bar{transform:none}
+#drawer a{font-family:var(--display);font-size:clamp(2.2rem,10vw,3.4rem);color:var(--paper);text-decoration:none;padding:.4rem 0;border-bottom:1px solid rgba(205,191,169,.14);display:flex;justify-content:space-between;align-items:baseline}
+#drawer a span{font-family:var(--mono);font-size:.75rem;color:var(--brass)}
+@media(max-width:900px){header nav ul{display:none}.burger{display:block}}
+.hero{min-height:100svh;padding:0 var(--pad);display:grid;grid-template-columns:7fr 5fr;gap:var(--pad);align-items:stretch;position:relative;overflow:hidden}
+.hero-l{display:flex;flex-direction:column;justify-content:flex-end;padding:calc(68px + 4rem) 0 4rem}
+.hero .tag{display:flex;gap:1rem;align-items:center;color:var(--brass);margin-bottom:2.2rem}
+.hero .tag::before{content:"";width:2.5rem;height:1px;background:var(--brass)}
+.hero h1{font-size:clamp(3rem,8vw,8rem);line-height:.95;text-transform:uppercase;letter-spacing:-.035em}
+.hero h1 .x{color:var(--brass);font-weight:400}
+.hero p.lede{max-width:34rem;font-size:1.15rem;color:var(--on-dark);margin-top:2.2rem;opacity:0;transform:translateY(18px);transition:all 1.2s var(--ease) .6s}
+.ready p.lede{opacity:1;transform:none}
+.hero-r{position:relative;margin:calc(68px + 2rem) 0 4rem;min-height:420px}
+.hero-img{position:absolute;inset:0;overflow:hidden;clip-path:inset(100% 0 0 0);transition:clip-path 1.6s var(--ease) .2s;background:var(--walnut-3)}
+.ready .hero-img{clip-path:inset(0)}
+.hero-img img{width:100%;height:118%;object-fit:cover;object-position:50% 30%;will-change:transform}
+.duo{filter:grayscale(1) sepia(.7) hue-rotate(-8deg) saturate(1.1) brightness(.78) contrast(1.2);transition:filter 1.2s var(--ease)}
+.duo-wrap:hover .duo{filter:grayscale(.15) sepia(.3) brightness(.9) contrast(1.05)}
+.hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(31,20,13,.65));pointer-events:none}
+.hero-cap{position:absolute;left:1rem;bottom:1rem;z-index:2;color:var(--paper)}
+.scroll-ind{position:absolute;left:var(--pad);bottom:1.4rem;display:flex;gap:.8rem;align-items:center;color:var(--on-dark)}
+.scroll-ind i{width:1px;height:34px;background:var(--brass);transform-origin:top;animation:ind 2.4s var(--ease) infinite}
+@keyframes ind{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.hero-r{order:-1;min-height:46svh;margin:calc(68px + 1rem) 0 0}.hero-l{padding:2rem 0 5rem}.scroll-ind{display:none}}
+.parties{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(205,191,169,.2);border-bottom:1px solid rgba(205,191,169,.2);margin:0 var(--pad)}
+.parties>div{padding:2rem 1.6rem 2rem 1.6rem;border-right:1px solid rgba(205,191,169,.14)}
+.parties>div:first-child{padding-left:0}.parties>div:last-child{border-right:0}
+.parties .mono{color:var(--brass)}
+.parties p{font-family:var(--display);font-size:clamp(1.3rem,2.2vw,1.9rem);margin-top:.5rem;line-height:1.15}
+@media(max-width:800px){.parties{grid-template-columns:1fr 1fr}.parties>div{padding:1.4rem 1rem;border-bottom:1px solid rgba(205,191,169,.14)}.parties>div:nth-child(odd){padding-left:0}}
+.sh{display:grid;grid-template-columns:5rem 1fr;gap:1rem;margin-bottom:clamp(3rem,7vw,6rem);align-items:start}
+.sh .mono{color:var(--brass-d);padding-top:1rem}
+.dark .sh .mono{color:var(--brass)}
+.sh h2{font-size:clamp(2.4rem,6vw,5.6rem);text-transform:uppercase;letter-spacing:-.01em}
+#fatos .lay{display:grid;grid-template-columns:5fr 7fr;gap:clamp(2rem,7vw,7rem)}
+.stick{position:sticky;top:110px;align-self:start}
+.bignum{font-family:var(--display);font-size:clamp(8rem,20vw,19rem);line-height:.8;color:var(--oxblood);letter-spacing:-.05em;overflow:hidden;height:.86em}
+.bignum span{display:block;transition:transform .5s var(--ease)}
+.stick p{max-width:26rem;margin-top:2.4rem;font-size:1.1rem}
+.fact{padding:2.6rem 0;border-top:1px solid var(--paper-3);display:grid;grid-template-columns:5rem 1fr;opacity:.28;transition:opacity .7s var(--ease)}
+.fact:last-child{border-bottom:1px solid var(--paper-3)}
+.fact.active{opacity:1}
+.fact .mono{color:var(--oxblood);padding-top:.7rem}
+.fact h3{font-family:var(--display);font-weight:500;font-size:clamp(1.7rem,3vw,2.5rem);letter-spacing:-.02em;line-height:1.1}
+.fact p{color:var(--ink-2);margin-top:.7rem;max-width:30rem}
+.fact .bar{height:2px;background:var(--oxblood);width:0;margin-top:1.4rem;transition:width 1s var(--ease)}
+.fact.active .bar{width:3rem}
+@media(max-width:900px){#fatos .lay{grid-template-columns:1fr}.stick{position:static}.bignum{display:none}.fact{opacity:1}.fact{grid-template-columns:4.5rem 1fr}}
+.quote{background:var(--oxblood);color:var(--paper);padding:clamp(6rem,14vw,12rem) var(--pad);overflow:hidden}
+.quote .mono{opacity:.8}
+.quote blockquote{font-family:var(--display);font-weight:500;font-size:clamp(2.6rem,12vw,12rem);line-height:.95;letter-spacing:-.045em;text-transform:uppercase;margin-top:2rem;position:relative;display:inline-block}
+.quote .strike{position:absolute;left:-1%;right:-1%;top:50%;height:.07em;background:var(--paper);transform:scaleX(0);transform-origin:left;transition:transform 1.3s var(--ease) 1s}
+.quote.in .strike{transform:scaleX(1)}
+.quote .foot{margin-top:3rem;max-width:26rem;font-size:1.1rem}
+.trib{display:grid;grid-template-columns:1fr 1fr;margin:0 calc(var(--pad)*-1)}
+.col{padding:clamp(2.5rem,5vw,5rem) var(--pad)}
+.col.acc{background:var(--walnut-2)}
+.col.def{background:var(--paper);color:var(--ink)}
+.col>.mono{display:flex;align-items:center;gap:.7rem}
+.col>.mono::before{content:"";width:10px;height:10px;background:#c8473a;outline:1px solid currentColor;outline-offset:3px}
+.col.def>.mono::before{background:var(--slate)}
+.col h3{font-family:var(--display);font-weight:500;font-size:clamp(2rem,3.6vw,3.2rem);line-height:1.05;letter-spacing:.005em;margin:1.4rem 0 2.5rem;text-transform:uppercase}
+.arg{display:grid;grid-template-columns:2.6rem 1fr;padding:1.3rem 0;border-top:1px solid rgba(205,191,169,.18)}
+.def .arg{border-color:var(--paper-3)}
+.arg i{font-style:normal;font-family:var(--mono);font-size:.74rem;color:var(--brass);padding-top:.35rem}
+.def .arg i{color:var(--slate)}
+.arg b{display:block;font-family:var(--display);font-weight:500;font-size:1.3rem;line-height:1.2}
+.arg b em{font-style:normal;font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;border:1px solid currentColor;padding:.12rem .45rem;margin-left:.6rem;vertical-align:middle;opacity:.75;white-space:nowrap}
+.arg span{display:block;margin-top:.35rem;font-size:.95rem}
+.acc .arg span{color:var(--on-dark)}.def .arg span{color:var(--ink-2)}
+.note{display:grid;grid-template-columns:14rem 1fr;gap:2rem;padding-top:2.2rem;margin-top:5rem;border-top:1px solid rgba(205,191,169,.25)}
+.note .mono{color:var(--brass)}
+.note p{font-family:var(--display);font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.35;max-width:46rem}
+@media(max-width:900px){.trib{grid-template-columns:1fr}.note{grid-template-columns:1fr;gap:.8rem}}
+.qs{border-top:1px solid var(--ink)}
+.q{display:grid;grid-template-columns:5rem 1.1fr 1.6fr 1.2fr;gap:2rem;padding:2.6rem 0;border-bottom:1px solid var(--paper-3);align-items:baseline;position:relative;isolation:isolate}
+.q::before{content:"";position:absolute;inset:0 calc(var(--pad)*-1);background:var(--ink);z-index:-1;transform:scaleY(0);transform-origin:bottom;transition:transform .6s var(--ease)}
+.q:hover::before{transform:scaleY(1)}
+.q>*{transition:color .4s}
+.q:hover{color:var(--paper)}
+.q:hover .dimm{color:var(--on-dark)}
+.q .mono{color:var(--oxblood)}.q:hover .mono{color:var(--brass)}
+.q h3{font-family:var(--display);font-weight:500;font-size:clamp(1.5rem,2.4vw,2.1rem);text-transform:uppercase;letter-spacing:.005em}
+.q .ask{font-family:var(--display);font-size:clamp(1.15rem,1.7vw,1.45rem);line-height:1.3}
+.q .dimm{color:var(--ink-2);font-size:.95rem}
+@media(max-width:900px){.q{grid-template-columns:4.5rem 1fr;gap:.5rem 1rem}.q .ask,.q .dimm{grid-column:2}}
+#registros{padding:0}
+.pin{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:clamp(1.5rem,4vh,3rem)}
+.pin-h{display:flex;justify-content:space-between;align-items:flex-end;padding:68px var(--pad) 0}
+.pin-h h2{font-size:clamp(2rem,4.6vw,4.2rem);text-transform:uppercase;letter-spacing:-.03em}
+.pin-h .cnt{font-family:var(--mono);font-size:.85rem;color:var(--on-dark)}
+.pin-h .cnt b{color:var(--paper);font-weight:500}
+.track{display:flex;gap:clamp(1rem,2vw,2rem);padding:0 var(--pad);will-change:transform;align-items:flex-start}
+.card{flex:0 0 auto;width:min(40vw,34rem)}
+.card:nth-child(even){margin-top:clamp(1rem,6vh,4rem)}
+.card button{display:block;width:100%;background:none;border:0;cursor:zoom-in;text-align:left}
+.frame{aspect-ratio:4/3;overflow:hidden;background:var(--walnut-3)}
+.frame img{width:100%;height:100%;object-fit:cover;transform:scale(1.18)}
+.card figcaption{display:flex;justify-content:space-between;padding-top:.8rem;color:var(--on-dark)}
+.card figcaption .mono:first-child{color:var(--paper)}
+.prog{position:absolute;left:var(--pad);right:var(--pad);bottom:2rem;height:1px;background:rgba(205,191,169,.2)}
+.prog i{display:block;height:100%;background:var(--brass);transform:scaleX(0);transform-origin:left}
+@media(max-width:800px){#registros{height:auto!important}.pin{position:static;height:auto;padding:5rem 0}.pin-h{padding-top:0}.track{overflow-x:auto;scroll-snap-type:x mandatory;transform:none!important;padding-bottom:1rem}.card{width:80vw;scroll-snap-align:center}.card:nth-child(even){margin-top:0}.prog{display:none}}
+#lb{position:fixed;inset:0;z-index:300;background:rgba(15,9,5,.96);display:grid;place-items:center;opacity:0;visibility:hidden;transition:opacity .5s,visibility .5s}
+#lb.open{opacity:1;visibility:visible}
+#lb figure{max-width:90vw}
+#lb img{max-width:90vw;max-height:78vh;margin:0 auto;transform:scale(.96);transition:transform .8s var(--ease)}
+#lb.open img{transform:none}
+#lb figcaption{margin-top:1rem;text-align:center;color:var(--on-dark)}
+.lb-b{position:absolute;background:none;border:1px solid rgba(205,191,169,.35);width:48px;height:48px;border-radius:50%;cursor:pointer;color:var(--paper);display:grid;place-items:center;transition:background .3s}
+.lb-b:hover{background:rgba(205,191,169,.15)}
+#lbx{top:1.4rem;right:1.4rem}#lbp{left:1.4rem;top:50%}#lbn{right:1.4rem;top:50%}
+#sentenca .lay{display:grid;grid-template-columns:5fr 7fr;gap:clamp(2rem,7vw,7rem)}
+.steps{position:relative;padding-left:3.5rem}
+.steps::before,.steps::after{content:"";position:absolute;left:11px;top:.6rem;bottom:.6rem;width:1px}
+.steps::before{background:var(--paper-3)}
+.steps::after{background:var(--oxblood);transform:scaleY(var(--p,0));transform-origin:top}
+.step{position:relative;padding:0 0 3rem}
+.step:last-child{padding-bottom:0}
+.step::before{content:"";position:absolute;left:-3.5rem;top:.55rem;width:23px;height:23px;border-radius:50%;background:var(--paper);border:1px solid var(--paper-3);transition:all .6s var(--ease);z-index:1}
+.step.done::before{background:var(--oxblood);border-color:var(--oxblood);box-shadow:0 0 0 5px var(--paper),0 0 0 6px var(--oxblood)}
+.step .mono{color:var(--oxblood)}
+.step h3{font-family:var(--display);font-weight:500;font-size:clamp(1.6rem,2.8vw,2.4rem);letter-spacing:.005em;margin:.3rem 0;text-transform:uppercase}
+.step p{color:var(--ink-2);max-width:28rem}
+@media(max-width:900px){#sentenca .lay{grid-template-columns:1fr}}
+.gv{text-align:center;padding:clamp(7rem,14vw,12rem) var(--pad);overflow:hidden}
+.gv h2{font-size:clamp(2.6rem,8vw,7.5rem);text-transform:uppercase;letter-spacing:-.04em}
+.gv .mono.b{color:var(--brass)}
+#gavel{background:none;border:0;cursor:pointer;margin:3rem auto 1rem;display:block;position:relative;padding:1rem 2rem}
+#gavel svg{width:170px;overflow:visible;display:block}
+#gavel .hd{transform-origin:112px 112px;transition:transform .4s var(--ease)}
+#gavel:hover .hd{transform:rotate(-10deg)}
+#gavel.hit .hd{animation:strike .65s cubic-bezier(.6,0,.4,1)}
+@keyframes strike{0%{transform:rotate(0)}42%{transform:rotate(-40deg)}60%{transform:rotate(5deg)}78%{transform:rotate(-2deg)}100%{transform:rotate(0)}}
+.ring{position:absolute;left:50%;bottom:2.2rem;width:16px;height:16px;margin:-8px;border:1px solid var(--brass);border-radius:50%;opacity:0;pointer-events:none}
+.ring.go{animation:ring 1.3s var(--ease)}
+@keyframes ring{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(18)}}
+#decree{font-family:var(--display);font-size:clamp(1.4rem,2.6vw,2.2rem);min-height:1.6em;margin-top:2rem;transition:opacity .4s,transform .4s var(--ease)}
+#decree.out{opacity:0;transform:translateY(10px)}
+footer{padding:2.4rem var(--pad);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;border-top:1px solid rgba(205,191,169,.16);color:var(--on-dark)}
+footer b{font-family:var(--display);font-weight:500;color:var(--paper);font-size:1.1rem}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .rv,.mask>span,.hero p.lede{opacity:1;transform:none}
+  .hero-img{clip-path:none}
+  .quote .strike{transform:scaleX(1)}
+}
+</style>
+</head>
+<body>
+<header class="bar" id="bar">
+  <a href="#topo" class="brand" aria-label="Júri Simulado — início">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M12 3v17M6 20h12M3.5 7h17M6.5 7l-3 7a3 3 0 0 0 6 0zM17.5 7l-3 7a3 3 0 0 0 6 0z"/></svg>
+    <b>Júri Simulado</b>
+  </a>
+  <nav aria-label="Principal"><ul>
+    <li><a href="#fatos">Fatos</a></li><li><a href="#tribuna">Tribuna</a></li><li><a href="#questoes">Questões</a></li><li><a href="#registros">Registros</a></li><li><a href="#sentenca">Sentença</a></li>
+  </ul></nav>
+  <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false"><i></i><i></i></button>
+</header>
+<div id="drawer" aria-hidden="true">
+  <a href="#fatos"><b>Fatos</b><span>01</span></a><a href="#tribuna"><b>Tribuna</b><span>02</span></a><a href="#questoes"><b>Questões</b><span>03</span></a><a href="#registros"><b>Registros</b><span>04</span></a><a href="#sentenca"><b>Sentença</b><span>05</span></a>
+</div>
+<main id="topo">
+<div class="hero" id="hero">
+  <div class="hero-l">
+    <div class="tag mono">Dossiê oficial · Júri simulado</div>
+    <h1 class="display"><span class="mask"><span>VidaFit</span></span><span class="mask"><span><span class="x">×</span> Ana</span></span><span class="mask"><span>Martins</span></span></h1>
+    <p class="lede">Publicidade enganosa, influência digital e a responsabilidade de quem vende confiança para oitocentos mil seguidores.</p>
+  </div>
+  <div class="hero-r duo-wrap">
+    <div class="hero-img"><img class="duo" id="heroImg" src="assets/foto1.jpg" alt="Integrante do júri lendo o parecer em sala de aula"></div>
+    <div class="hero-cap mono">Registro 01</div>
+  </div>
+  <div class="scroll-ind mono"><i></i>Role para ler os autos</div>
+</div>
+<div class="parties">
+  <div class="rv"><span class="mono">Ré 1 · Empresa</span><p>VidaFit Ltda.</p></div>
+  <div class="rv" style="transition-delay:.08s"><span class="mono">Ré 2 · Influenciadora</span><p>Ana Martins</p></div>
+  <div class="rv" style="transition-delay:.16s"><span class="mono">Contrato</span><p id="money">R$ 30.000,00</p></div>
+  <div class="rv" style="transition-delay:.24s"><span class="mono">Acusação</span><p>Ministério Público</p></div>
+</div>
+<section id="fatos" class="paper" style="margin-top:clamp(6rem,12vw,10rem)">
+  <div class="sh"><span class="mono rv">01</span><h2 class="display rv">Fatos<br>comprovados</h2></div>
+  <div class="lay">
+    <div class="stick">
+      <div class="bignum" aria-hidden="true"><span id="bn">01</span></div>
+      <p class="rv">A VidaFit pagou R$ 30.000,00 para que Ana Martins divulgasse um suplemento. Durante três semanas, os vídeos prometeram perda de peso acelerada sem indicar que eram publicidade.</p>
+    </div>
+    <div id="facts">
+      <article class="fact" data-n="01"><span class="mono">Fato 01</span><div><h3>Omissão comercial</h3><p>Ausência de sinalização de publicidade: sem #ad, sem #publi.</p><div class="bar"></div></div></article>
+      <article class="fact" data-n="02"><span class="mono">Fato 02</span><div><h3>Falsidade declaratória</h3><p>A influenciadora jamais utilizou o suplemento.</p><div class="bar"></div></div></article>
+      <article class="fact" data-n="03"><span class="mono">Fato 03</span><div><h3>Manipulação de imagem</h3><p>Uso de fotos editadas digitalmente para simular resultados.</p><div class="bar"></div></div></article>
+      <article class="fact" data-n="04"><span class="mono">Fato 04</span><div><h3>Conivência</h3><p>A VidaFit sabia que a influenciadora não usava o suplemento.</p><div class="bar"></div></div></article>
+      <article class="fact" data-n="05"><span class="mono">Fato 05</span><div><h3>Danos a terceiros</h3><p>Consumidores relataram ausência de resultados, perda financeira e problemas de saúde.</p><div class="bar"></div></div></article>
+    </div>
+  </div>
+</section>
+<section class="quote" id="quote">
+  <div class="mono rv">A promessa publicada</div>
+  <blockquote>“10 kg sem dieta”<span class="strike"></span></blockquote>
+  <p class="foot rv">Alegação veiculada por três semanas, sem indicação de conteúdo patrocinado e sustentada por fotos editadas.</p>
+</section>
+<section id="tribuna" class="dark">
+  <div class="sh"><span class="mono rv">02</span><h2 class="display rv">A<br>tribuna</h2></div>
+  <div class="trib">
+    <div class="col acc">
+      <span class="mono rv">Acusação · Ministério Público</span>
+      <h3 class="rv">O consumidor foi enganado</h3>
+      <div class="arg rv"><i>A1</i><div><b>Publicidade enganosa</b><span>CDC, Art. 37, §1º. Promessa falsa sustentada por edição digital.</span></div></div>
+      <div class="arg rv"><i>A2</i><div><b>Omissão informacional</b><span>CDC, Art. 37, §2º. Esconder a natureza paga do post induz o consumidor a erro.</span></div></div>
+      <div class="arg rv"><i>A3</i><div><b>Coautoria</b><span>Empresa e influenciadora lucraram com a indução ao erro.</span></div></div>
+      <div class="arg rv"><i>A4</i><div><b>Abuso de confiança</b><span>Uso do alcance de 800 mil seguidores sem o devido cuidado ético e legal.</span></div></div>
+    </div>
+    <div class="col def">
+      <span class="mono rv">Defesa · Ana Martins e VidaFit</span>
+      <h3 class="rv">Não houve fraude dolosa</h3>
+      <div class="arg rv"><i>D1</i><div><b>Exagero publicitário<em>Ana</em></b><span>Dolus bonus: recurso habitual de persuasão no marketing digital.</span></div></div>
+      <div class="arg rv"><i>D2</i><div><b>Dever técnico do fabricante<em>Ana</em></b><span>A comprovação de segurança e eficácia cabe à empresa contratante.</span></div></div>
+      <div class="arg rv"><i>D3</i><div><b>Linguagem visual<em>Ana</em></b><span>O uso de filtros é prática comum nas redes, sem intenção de fraude dolosa.</span></div></div>
+      <div class="arg rv"><i>D4</i><div><b>Autonomia do influenciador<em>VidaFit</em></b><span>Roteiro e declarações do cotidiano são de responsabilidade do criador.</span></div></div>
+      <div class="arg rv"><i>D5</i><div><b>Necessidade de perícia<em>VidaFit</em></b><span>Danos à saúde exigem laudo técnico para comprovar o nexo causal.</span></div></div>
+      <div class="arg rv"><i>D6</i><div><b>Variação biológica<em>VidaFit</em></b><span>Resultados de suplementos variam segundo o organismo de cada pessoa.</span></div></div>
+    </div>
+  </div>
+  <div class="note rv"><span class="mono">Aspecto adicional · LGPD</span><p>Se dados coletados nas compras forem reutilizados sem autorização expressa em novas campanhas, há descumprimento direto dos princípios de finalidade e consentimento.</p></div>
+</section>
+<section id="questoes" class="paper">
+  <div class="sh"><span class="mono rv">03</span><h2 class="display rv">Questões<br>do júri</h2></div>
+  <div class="qs">
+    <div class="q rv"><span class="mono">Eixo 1</span><h3>Publicidade</h3><p class="ask">A falta de aviso de post pago e o uso de fotos editadas configuram ilícito?</p><p class="dimm">Mede a infração às normas do CDC e do Código do CONAR.</p></div>
+    <div class="q rv"><span class="mono">Eixo 2</span><h3>Impacto social</h3><p class="ask">O grande número de seguidores amplia a responsabilidade do criador?</p><p class="dimm">Define o grau de culpa e a dosimetria de eventual indenização moral.</p></div>
+    <div class="q rv"><span class="mono">Eixo 3</span><h3>Responsabilidade</h3><p class="ask">A obrigação de indenizar é de um dos réus ou de ambos?</p><p class="dimm">Determina a divisão da responsabilidade financeira e reparações.</p></div>
+  </div>
+</section>
+<section id="registros" class="dark">
+  <div class="pin">
+    <div class="pin-h">
+      <h2 class="display">Registros<br>da sessão</h2>
+      <div class="cnt"><b id="hn">01</b> / 09</div>
+    </div>
+    <div class="track" id="track"></div>
+    <div class="prog"><i id="pg"></i></div>
+  </div>
+</section>
+<section id="sentenca" class="paper">
+  <div class="lay">
+    <div>
+      <div class="sh" style="margin-bottom:2rem"><span class="mono rv">04</span><h2 class="display rv" style="font-size:clamp(2.4rem,5vw,4.6rem)">Roteiro<br>da sentença</h2></div>
+      <p class="dim rv" style="max-width:24rem;margin-left:6rem">Parecer final do Conselho Julgador. Deve conter os tópicos abaixo, nesta ordem.</p>
+    </div>
+    <div class="steps" id="steps">
+      <div class="step"><span class="mono">Tópico 1</span><h3>Síntese do caso</h3><p>Resumo da controvérsia entre as partes.</p></div>
+      <div class="step"><span class="mono">Tópico 2</span><h3>Fatos comprovados</h3><p>Lista de evidências aceitas pelo conselho.</p></div>
+      <div class="step"><span class="mono">Tópico 3</span><h3>Enquadramento legal</h3><p>Indicação das leis e princípios violados.</p></div>
+      <div class="step"><span class="mono">Tópico 4</span><h3>Decisão de culpabilidade</h3><p>Definição sobre a responsabilidade de Ana Martins, da VidaFit ou de ambas.</p></div>
+      <div class="step"><span class="mono">Tópico 5</span><h3>Medidas determinadas</h3><p>Reembolsos, ressarcimentos e recomendações operacionais.</p></div>
+    </div>
+  </div>
+</section>
+<section class="gv dark">
+  <div class="mono b rv">A palavra final</div>
+  <h2 class="display rv" style="margin-top:1.4rem">Ordem no<br>tribunal</h2>
+  <button id="gavel" class="rv" aria-label="Bater o martelo">
+    <svg viewBox="0 0 170 150" aria-hidden="true">
+      <rect x="30" y="128" width="110" height="14" fill="#3a271a"/><rect x="30" y="128" width="110" height="3" fill="#b8924f"/>
+      <g class="hd"><g transform="rotate(-32 112 112)">
+        <rect x="52" y="108" width="100" height="8" fill="#8a5a36"/>
+        <rect x="34" y="62" width="34" height="62" fill="#5a3520"/>
+        <rect x="34" y="74" width="34" height="4" fill="#b8924f"/><rect x="34" y="108" width="34" height="4" fill="#b8924f"/>
+      </g></g>
+    </svg>
+    <span class="ring" id="ring"></span>
+  </button>
+  <div class="mono dim">Clique para bater o martelo</div>
+  <div id="decree" aria-live="polite"></div>
+</section>
+</main>
+<footer><b>Júri Simulado</b><span class="mono">Caso VidaFit × Ana Martins</span></footer>
+<div id="lb" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <button class="lb-b" id="lbx" aria-label="Fechar">✕</button>
+  <button class="lb-b" id="lbp" aria-label="Anterior">←</button>
+  <button class="lb-b" id="lbn" aria-label="Próxima">→</button>
+  <figure><img alt=""><figcaption class="mono"></figcaption></figure>
+</div>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const N=9,track=$('#track');
+for(let i=1;i<=N;i++){
+  const f=document.createElement('figure');f.className='card duo-wrap';
+  f.innerHTML=`<button aria-label="Ampliar registro ${i}"><div class="frame"><img class="duo" src="assets/foto${i}.jpg" alt="Registro ${i} da sessão" loading="lazy"></div></button><figcaption><span class="mono">Registro ${String(i).padStart(2,'0')}</span><span class="mono">Sessão</span></figcaption>`;
+  track.appendChild(f);
+}
+const cards=[...track.children];
+const lenis=new Lenis({duration:1.35,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)),touchMultiplier:1.2});
+(function raf(t){lenis.raf(t);requestAnimationFrame(raf)})();
+const bar=$('#bar');
+function go(h){document.body.classList.remove('menu-open');burger.setAttribute('aria-expanded',false);lenis.start();lenis.scrollTo(h==='#topo'?0:h,{offset:h==='#registros'||h==='#topo'?0:-68,duration:1.8})}
+$$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();go(a.getAttribute('href'))}));
+const burger=$('#burger');
+burger.addEventListener('click',()=>{
+  const o=document.body.classList.toggle('menu-open');
+  burger.setAttribute('aria-expanded',o);$('#drawer').setAttribute('aria-hidden',!o);
+  o?lenis.stop():lenis.start();
+});
+const hs=$('#registros'),hn=$('#hn'),pg=$('#pg');
+const isMobile=()=>innerWidth<=800;
+function sizeGallery(){hs.style.height=isMobile()?'':(track.scrollWidth-innerWidth+innerHeight*1.1)+'px'}
+addEventListener('resize',sizeGallery);addEventListener('load',sizeGallery);sizeGallery();
+let last=0;
+const hero=$('#heroImg'),steps=$('#steps'),stepEls=$$('.step'),navLinks=$$('header nav a');
+function fx(scroll){
+  bar.classList.toggle('solid',scroll>40);
+  if(scroll>last+4&&scroll>500)bar.classList.add('hide');else if(scroll<last-4)bar.classList.remove('hide');
+  last=scroll;
+  if(!reduce)hero.style.transform=`translate3d(0,${Math.min(scroll,innerHeight)*-.08}px,0)`;
+  if(!isMobile()){
+    const r=hs.getBoundingClientRect(),total=hs.offsetHeight-innerHeight,p=Math.min(1,Math.max(0,-r.top/total));
+    track.style.transform=`translate3d(${-p*(track.scrollWidth-innerWidth)}px,0,0)`;
+    pg.style.transform=`scaleX(${p})`;
+    hn.textContent=String(Math.min(N,Math.floor(p*N*.999)+1)).padStart(2,'0');
+    if(!reduce)cards.forEach(c=>{const b=c.getBoundingClientRect(),k=(b.left+b.width/2-innerWidth/2)/innerWidth;c.querySelector('img').style.transform=`scale(1.18) translateX(${k*-5}%)`});
+  }
+  const sr=steps.getBoundingClientRect(),sp=Math.min(1,Math.max(0,(innerHeight*.6-sr.top)/sr.height));
+  steps.style.setProperty('--p',sp);
+  stepEls.forEach(s=>s.classList.toggle('done',s.getBoundingClientRect().top<innerHeight*.62));
+  navLinks.forEach(a=>{const b=$(a.getAttribute('href')).getBoundingClientRect();a.classList.toggle('on',b.top<innerHeight*.4&&b.bottom>innerHeight*.4)});
+}
+lenis.on('scroll',e=>fx(e.scroll));fx(0);
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.14,rootMargin:'0px 0px -6% 0px'});
+$$('.rv,.quote').forEach(el=>io.observe(el));
+const bn=$('#bn');
+const fio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  $$('.fact').forEach(f=>f.classList.remove('active'));e.target.classList.add('active');
+  const n=e.target.dataset.n;if(bn.textContent===n)return;
+  bn.style.transform='translateY(100%)';
+  setTimeout(()=>{bn.textContent=n;bn.style.transition='none';bn.style.transform='translateY(-100%)';void bn.offsetWidth;bn.style.transition='';bn.style.transform='none'},300);
+}),{rootMargin:'-42% 0px -42% 0px'});
+$$('.fact').forEach(f=>fio.observe(f));
+addEventListener('load',()=>setTimeout(()=>{$('#hero').classList.add('ready');$$('.hero .mask').forEach(m=>m.classList.add('in'))},150));
+const money=$('#money');
+new IntersectionObserver((es,o)=>{if(!es[0].isIntersecting)return;o.disconnect();const t0=performance.now();
+  (function s(t){const p=Math.min(1,(t-t0)/1800),v=Math.round(30000*(1-Math.pow(1-p,4)));money.textContent='R$ '+v.toLocaleString('pt-BR')+',00';if(p<1)requestAnimationFrame(s)})(t0)},{threshold:.6}).observe(money);
+const lb=$('#lb'),lbi=lb.querySelector('img'),lbc=lb.querySelector('figcaption');let cur=0,opener=null;
+function show(i){cur=(i+N)%N;lbi.src=`assets/foto${cur+1}.jpg`;lbi.alt=`Registro ${cur+1} da sessão`;lbc.textContent=`Registro ${String(cur+1).padStart(2,'0')} / ${String(N).padStart(2,'0')}`}
+function openLb(i,el){opener=el;show(i);lb.classList.add('open');lenis.stop();$('#lbx').focus()}
+function closeLb(){lb.classList.remove('open');lenis.start();opener&&opener.focus()}
+cards.forEach((c,i)=>c.querySelector('button').addEventListener('click',e=>openLb(i,e.currentTarget)));
+$('#lbx').onclick=closeLb;$('#lbp').onclick=()=>show(cur-1);$('#lbn').onclick=()=>show(cur+1);
+lb.addEventListener('click',e=>{if(e.target===lb)closeLb()});
+addEventListener('keydown',e=>{
+  if(lb.classList.contains('open')){if(e.key==='Escape')closeLb();if(e.key==='ArrowLeft')show(cur-1);if(e.key==='ArrowRight')show(cur+1)}
+  else if(e.key==='Escape'&&document.body.classList.contains('menu-open'))burger.click();
+});
+const frases=['A sessão está aberta.','Ordem no tribunal.','A verdade não se edita com filtros.','Que o Conselho Julgador delibere.'];
+let k=0;const gv=$('#gavel'),ring=$('#ring'),dc=$('#decree');
+gv.addEventListener('click',()=>{
+  gv.classList.remove('hit');void gv.offsetWidth;gv.classList.add('hit');
+  setTimeout(()=>{ring.classList.remove('go');void ring.offsetWidth;ring.classList.add('go');
+    dc.classList.add('out');setTimeout(()=>{dc.textContent=frases[k++%frases.length];dc.classList.remove('out')},280)},260);
+});
+</script>
+</body>
+</html>
